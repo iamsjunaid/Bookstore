@@ -1,0 +1,9 @@
+.navbar ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.col-1 {
+    gap: 2em;
+}
