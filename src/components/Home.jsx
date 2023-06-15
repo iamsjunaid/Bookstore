@@ -1,7 +1,7 @@
 import Books from './Books';
 
 const Home = () => (
-  <div>
+  <div className="home">
     <Books />
   </div>
 );
