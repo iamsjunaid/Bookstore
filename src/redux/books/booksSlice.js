@@ -32,7 +32,7 @@ export const removeBook = (id) => ({
 const bookReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_BOOK:
-      return [...state, action.payload];
+      return [...state, { ...action.payload, id: state.length + 1 }];
 
     case REMOVE_BOOK:
       return [...state, state.filter((book) => book.id !== action.payload)];
