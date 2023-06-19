@@ -6,4 +6,5 @@
 
 .col-1 {
   gap: 2em;
+  display: flex;
 }
