@@ -1,5 +1,4 @@
-const ADD_BOOK = 'books/ADD_BOOK';
-const REMOVE_BOOK = 'books/REMOVE_BOOK';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = [
   {
@@ -19,33 +18,22 @@ const initialState = [
   },
 ];
 
-export const addBook = (book) => ({
-  type: ADD_BOOK,
-  book,
+const booksSlice = createSlice({
+  name: 'books',
+  initialState,
+  reducers: {
+    addBook: (state, action) => {
+      const newBook = { ...action.payload, id: state.length + 1 };
+      state.push(newBook);
+    },
+    removeBook: (state, action) => {
+      const bookIndex = state.findIndex((book) => book.id === action.payload);
+      if (bookIndex !== -1) {
+        state.splice(bookIndex, 1);
+      }
+    },
+  },
 });
 
-export const removeBook = (id) => ({
-  type: REMOVE_BOOK,
-  id,
-});
-
-const bookReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_BOOK:
-      return [...state, { ...action.book, id: state.length + 1 }];
-
-    case REMOVE_BOOK: {
-      const filteredBooks = state.filter((book) => book.id !== action.id);
-      const updatedArray = filteredBooks.map((book, index) => ({
-        ...book,
-        id: index + 1,
-      }));
-      return [...updatedArray];
-    }
-
-    default:
-      return state;
-  }
-};
-
-export default bookReducer;
+export const { addBook, removeBook } = booksSlice.actions;
+export default booksSlice.reducer;
