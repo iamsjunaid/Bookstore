@@ -1,20 +1,41 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import './styles/Book.css';
-import { removeBook } from '../redux/books/booksSlice';
+import { getBooks } from '../redux/books/booksSlice';
 
 const Book = () => {
-  const booksList = useSelector((state) => state.books);
   const dispatch = useDispatch();
+  const { isLoading, data, isError } = useSelector((state) => state.books);
 
-  const removeBookFromList = (id) => {
-    dispatch(removeBook(id));
-  };
+  useEffect(() => {
+    dispatch(getBooks());
+  }, [dispatch]);
+
+  const booksArray = data
+    ? Object.entries(data).reduce((acc, [id, bookList]) => {
+      const booksWithId = bookList.map((book) => ({ ...book, id }));
+      return [...acc, ...booksWithId];
+    }, [])
+    : [];
+
+  console.log('isLoading:', isLoading);
+  console.log('data:', data);
+  console.log('booksArray:', booksArray);
+  console.log('isError:', isError);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error occurred while fetching data.</div>;
+  }
 
   return (
     <div>
-
-      {booksList.map((book) => (
-        <div key={book.id} className="book">
+      {/* Render the book data */}
+      {booksArray.map((book) => (
+        <div className="book" key={book.id}>
           <article>
             <div className="book-details">
               <p>{book.category}</p>
@@ -24,7 +45,7 @@ const Book = () => {
             </div>
             <div className="interactions">
               <button type="submit">Comments</button>
-              <button type="submit" onClick={() => removeBookFromList(book.id)}>Remove</button>
+              <button type="submit">Remove</button>
               <button type="submit">Edit</button>
             </div>
           </article>
@@ -47,4 +68,5 @@ const Book = () => {
     </div>
   );
 };
+
 export default Book;
