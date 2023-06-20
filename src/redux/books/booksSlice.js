@@ -5,16 +5,19 @@ const initialState = [
     id: 1,
     title: 'Code Complete',
     author: 'Steve McConnell',
+    category: 'Programming',
   },
   {
     id: 2,
     title: 'Programming Pearls',
     author: 'Jon Bentley',
+    category: 'Programming',
   },
   {
     id: 3,
     title: 'Cacking the Coding Interview',
     author: 'Gayle Laakmann',
+    category: 'Programming',
   },
 ];
 

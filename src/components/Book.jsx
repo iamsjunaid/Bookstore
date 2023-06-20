@@ -17,7 +17,7 @@ const Book = () => {
         <div key={book.id} className="book">
           <article>
             <div className="book-details">
-              <p>Book.Genre</p>
+              <p>{book.category}</p>
               <p>{book.id}</p>
               <p>{book.title}</p>
               <p>{book.author}</p>

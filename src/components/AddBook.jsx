@@ -7,6 +7,7 @@ const AddBook = () => {
   const [newBook, setNewBook] = useState({
     title: '',
     author: '',
+    category: '',
   });
 
   const handleChange = (e) => {
@@ -21,10 +22,12 @@ const AddBook = () => {
     dispatch(addBook({
       title: newBook.title,
       author: newBook.author,
+      category: newBook.category,
     }));
     setNewBook({
       title: '',
       author: '',
+      category: '',
     });
   };
 
@@ -34,6 +37,17 @@ const AddBook = () => {
       <form action="submit">
         <input type="text" name="title" id="name" value={newBook.title} placeholder="Book Title" onChange={handleChange} />
         <input type="text" name="author" id="author" value={newBook.author} placeholder="Book Author" onChange={handleChange} />
+        <select type="text" id="category" name="category" value={newBook.category} placeholder="Category" onChange={handleChange}>
+          <option value="" disabled>Categories</option>
+          <option value="horror">Horror</option>
+          <option value="fantasy">Fantasy</option>
+          <option value="fiction">Fiction</option>
+          <option value="non-fiction">Non-Fiction</option>
+          <option value="thriller">Thriller</option>
+          <option value="biography">Biography</option>
+          <option value="mystrry">Mystery</option>
+          <option value="programming">Programming</option>
+        </select>
         <button type="submit" onClick={addBookToList}>
           <span>Add Book</span>
         </button>
