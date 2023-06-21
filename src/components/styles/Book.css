@@ -8,6 +8,9 @@
   background-color: var(--white-two);
   font-family: var(--font-sec);
   align-items: center;
+  width: 54em;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .category {
