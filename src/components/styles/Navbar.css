@@ -1,6 +1,7 @@
 .navbar {
   font-family: var(--font-pri);
   border-bottom: 1px solid #e8e8e8;
+  background-color: #fff;
 }
 
 .navbar ul {
@@ -42,7 +43,7 @@
 }
 
 .oval {
- border-radius: 1.5em;
+  border-radius: 1.5em;
   padding: 0.875rem;
   border: solid 1px #e8e8e8;
 }
