@@ -1,30 +1,55 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 import './styles/Book.css';
-import { removeBook } from '../redux/books/booksSlice';
+import { getBooks, deleteBook } from '../redux/books/booksSlice';
 
 const Book = () => {
-  const booksList = useSelector((state) => state.books);
+  const [setError] = useState(null);
   const dispatch = useDispatch();
+  const { isLoading, data, isError } = useSelector((state) => state.books);
 
-  const removeBookFromList = (id) => {
-    dispatch(removeBook(id));
+  useEffect(() => {
+    dispatch(getBooks());
+  }, [dispatch]);
+
+  const booksArray = data
+    ? Object.entries(data).reduce((acc, [id, bookList]) => {
+      const booksWithId = bookList.map((book) => ({ ...book, id }));
+      return [...acc, ...booksWithId];
+    }, [])
+    : [];
+
+  const handleDeleteBook = async (id) => {
+    try {
+      await dispatch(deleteBook(id));
+      await dispatch(getBooks());
+    } catch (error) {
+      setError(error);
+    }
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error occurred while fetching data.</div>;
+  }
 
   return (
     <div>
-
-      {booksList.map((book) => (
-        <div key={book.id} className="book">
+      {/* Render the book data */}
+      {booksArray.map((book) => (
+        <div className="book" key={book.id}>
           <article>
             <div className="book-details">
-              <p>Book.Genre</p>
-              <p>{book.id}</p>
+              <p>{book.category}</p>
               <p>{book.title}</p>
               <p>{book.author}</p>
             </div>
             <div className="interactions">
               <button type="submit">Comments</button>
-              <button type="submit" onClick={() => removeBookFromList(book.id)}>Remove</button>
+              <button type="submit" onClick={() => handleDeleteBook(book.id)}>Remove</button>
               <button type="submit">Edit</button>
             </div>
           </article>
@@ -47,4 +72,5 @@ const Book = () => {
     </div>
   );
 };
+
 export default Book;
