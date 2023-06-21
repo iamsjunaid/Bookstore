@@ -6,12 +6,12 @@ const Navbar = () => (
   <nav className="navbar">
     <ul>
       <div className="col-1">
-        <li>Bookstore CMS</li>
+        <li className="title-link">Bookstore CMS</li>
         <li>
-          <Link to="/">Books</Link>
+          <Link to="/" className="subtitle-link">Books</Link>
         </li>
         <li>
-          <Link to="/categories">Categories</Link>
+          <Link to="/categories" className="subtitle-link">Categories</Link>
         </li>
       </div>
       <div className="oval">

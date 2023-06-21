@@ -1,10 +1,47 @@
+.navbar {
+  font-family: var(--font-pri);
+}
+
 .navbar ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0;
+  padding: 2em 4em;
+}
+
+.navbar li {
+  list-style: none;
+}
+
+.navbar li a {
+  text-decoration: none;
+}
+
+.title-link {
+  color: var(--font-color-pri);
+  width: 15rem;
+  height: 2.313rem;
+  font-size: 1.875rem;
+  font-weight: 700;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.subtitle-link {
+  color: var(--font-color-sec);
 }
 
 .col-1 {
   gap: 2em;
   display: flex;
+  align-items: center;
+}
+
+.oval {
+ border-radius: 1.5em;
+  padding: 0.875rem;
+  border: solid 1px #e8e8e8;
 }
