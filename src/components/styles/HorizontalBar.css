@@ -1,0 +1,7 @@
+.horizontal-bar {
+    height: 0.125rem;
+    margin: 2.5rem 0.063rem 1.813rem 0;
+    border: solid 1px #e8e8e8;
+    width: 65em;
+    margin: 2em auto;
+}
