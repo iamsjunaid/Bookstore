@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const getBooksURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/wUxXlMuiwuovrvJw2spJ/books';
 
 // get books from the API
 export const getBooks = createAsyncThunk('getBooks', async (thunkAPI) => {
   try {
-    const response = await fetch(getBooksURL);
-    return response.json();
+    const response = await axios.get(getBooksURL);
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue({ error: error.message });
   }
@@ -16,17 +17,16 @@ export const getBooks = createAsyncThunk('getBooks', async (thunkAPI) => {
 export const addBookURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/wUxXlMuiwuovrvJw2spJ/books';
 export const postBook = createAsyncThunk('books/addBook', async (book, thunkAPI) => {
   try {
-    const response = await fetch(addBookURL, {
-      method: 'POST',
-      body: JSON.stringify(book),
+    const response = await axios.post(addBookURL, book, {
       headers: {
         'Content-Type': 'application/json',
       },
     });
-    if (response.ok) {
-      const data = await response.json();
-      return data;
+
+    if (response.status === 200) {
+      return response.data;
     }
+
     throw new Error('Failed to add book');
   } catch (error) {
     return thunkAPI.rejectWithValue('Something went wrong');
@@ -37,14 +37,12 @@ export const postBook = createAsyncThunk('books/addBook', async (book, thunkAPI)
 export const deleteBookURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/wUxXlMuiwuovrvJw2spJ/books';
 export const deleteBook = createAsyncThunk('books/deleteBook', async (bookId, thunkAPI) => {
   try {
-    const response = await fetch(`${deleteBookURL}/${bookId}`, {
-      method: 'DELETE',
-    });
+    const response = await axios.delete(`${deleteBookURL}/${bookId}`);
 
-    if (response.ok) {
-      const data = await response.json();
-      return data;
+    if (response.status === 200) {
+      return response.data;
     }
+
     throw new Error('Failed to delete book');
   } catch (error) {
     return thunkAPI.rejectWithValue('Something went wrong');
