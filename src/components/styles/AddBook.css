@@ -30,14 +30,6 @@ form {
     background-color: #fff;
 }
 
-#name {
-    /* width: 40%; */
-}
-
-#author {
-    /* width: 30%; */
-}
-
-#category {
-    /* width: 16%; */
+#category:hover {
+    cursor: pointer;
 }
