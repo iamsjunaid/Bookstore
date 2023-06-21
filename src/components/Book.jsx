@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import './styles/Book.css';
-import { getBooks } from '../redux/books/booksSlice';
+import { getBooks, removeBook } from '../redux/books/booksSlice';
 
 const Book = () => {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const Book = () => {
             </div>
             <div className="interactions">
               <button type="submit">Comments</button>
-              <button type="submit">Remove</button>
+              <button type="submit" onClick={() => removeBook(book.item_id)}>Remove</button>
               <button type="submit">Edit</button>
             </div>
           </article>
