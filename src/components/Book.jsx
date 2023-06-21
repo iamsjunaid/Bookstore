@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './styles/Book.css';
 import { getBooks, deleteBook } from '../redux/books/booksSlice';
 
 const Book = () => {
+  const [setError] = useState(null);
   const dispatch = useDispatch();
   const { isLoading, data, isError } = useSelector((state) => state.books);
 
@@ -23,7 +24,7 @@ const Book = () => {
       await dispatch(deleteBook(id));
       await dispatch(getBooks());
     } catch (error) {
-      console.log(error); // eslint-disable-line no-console
+      setError(error);
     }
   };
 

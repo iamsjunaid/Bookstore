@@ -5,6 +5,7 @@ import { getBooks, postBook } from '../redux/books/booksSlice';
 
 const AddBook = () => {
   const dispatch = useDispatch();
+  const [setError] = useState(null);
   const [newBook, setNewBook] = useState({
     title: '',
     author: '',
@@ -33,7 +34,7 @@ const AddBook = () => {
         category: '',
       });
       await dispatch(getBooks());
-    } catch (err) { console.log(err); } // eslint-disable-line no-console
+    } catch (err) { setError(err); }
   };
 
   return (
