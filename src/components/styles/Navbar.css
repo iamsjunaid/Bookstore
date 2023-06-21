@@ -1,5 +1,6 @@
 .navbar {
   font-family: var(--font-pri);
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .navbar ul {
