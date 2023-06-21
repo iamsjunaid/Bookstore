@@ -29,7 +29,6 @@ export const postBook = createAsyncThunk('books/addBook', async (book, thunkAPI)
     }
     throw new Error('Failed to add book');
   } catch (error) {
-    console.log(error);
     return thunkAPI.rejectWithValue('Something went wrong');
   }
 });
@@ -48,7 +47,6 @@ export const deleteBook = createAsyncThunk('books/deleteBook', async (bookId, th
     }
     throw new Error('Failed to delete book');
   } catch (error) {
-    console.log(error);
     return thunkAPI.rejectWithValue('Something went wrong');
   }
 });
@@ -81,7 +79,6 @@ const booksSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(getBooks.rejected, (state) => {
-        console.log('rejected');
         state.isLoading = false;
         state.isError = true;
       })
@@ -91,8 +88,7 @@ const booksSlice = createSlice({
       .addCase(postBook.fulfilled, (state) => {
         state.isLoading = false;
       })
-      .addCase(postBook.rejected, (state, action) => {
-        console.log(action);
+      .addCase(postBook.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(deleteBook.pending, (state) => {
@@ -101,8 +97,7 @@ const booksSlice = createSlice({
       .addCase(deleteBook.fulfilled, (state) => {
         state.isLoading = false;
       })
-      .addCase(deleteBook.rejected, (state, action) => {
-        console.log(action);
+      .addCase(deleteBook.rejected, (state) => {
         state.isLoading = false;
       });
   },

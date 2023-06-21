@@ -18,21 +18,22 @@ const AddBook = () => {
     });
   };
 
-  const addBookToList = (e) => {
+  const addBookToList = async (e) => {
     e.preventDefault();
-    dispatch(postBook({
-      item_id: uuidv4(),
-      title: newBook.title,
-      author: newBook.author,
-      category: newBook.category,
-    }));
-    setNewBook({
-      title: '',
-      author: '',
-      category: '',
-    });
-    dispatch(getBooks());
-    console.log('bookData:', newBook);
+    try {
+      await dispatch(postBook({
+        item_id: uuidv4(),
+        title: newBook.title,
+        author: newBook.author,
+        category: newBook.category,
+      }));
+      setNewBook({
+        title: '',
+        author: '',
+        category: '',
+      });
+      await dispatch(getBooks());
+    } catch (err) { console.log(err); } // eslint-disable-line no-console
   };
 
   return (

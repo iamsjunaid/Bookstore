@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import './styles/Book.css';
-import { getBooks, removeBook } from '../redux/books/booksSlice';
+import { getBooks, deleteBook } from '../redux/books/booksSlice';
 
 const Book = () => {
   const dispatch = useDispatch();
@@ -18,10 +18,14 @@ const Book = () => {
     }, [])
     : [];
 
-  console.log('isLoading:', isLoading);
-  console.log('data:', data);
-  console.log('booksArray:', booksArray);
-  console.log('isError:', isError);
+  const handleDeleteBook = async (id) => {
+    try {
+      await dispatch(deleteBook(id));
+      await dispatch(getBooks());
+    } catch (error) {
+      console.log(error); // eslint-disable-line no-console
+    }
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -39,13 +43,12 @@ const Book = () => {
           <article>
             <div className="book-details">
               <p>{book.category}</p>
-              <p>{book.id}</p>
               <p>{book.title}</p>
               <p>{book.author}</p>
             </div>
             <div className="interactions">
               <button type="submit">Comments</button>
-              <button type="submit" onClick={() => removeBook(book.item_id)}>Remove</button>
+              <button type="submit" onClick={() => handleDeleteBook(book.id)}>Remove</button>
               <button type="submit">Edit</button>
             </div>
           </article>
