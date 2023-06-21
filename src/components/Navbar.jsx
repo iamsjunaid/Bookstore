@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import './styles/Navbar.css';
-import { FaUser } from 'react-icons/fa'; // eslint-disable-line import/no-extraneous-dependencies
 
 const Navbar = () => (
   <nav className="navbar">
@@ -14,9 +13,7 @@ const Navbar = () => (
           <Link to="/categories">Categories</Link>
         </li>
       </div>
-      <div className="oval">
-        <FaUser style={{ color: '#0290ff' }} />
-      </div>
+      <li>Icon</li>
     </ul>
   </nav>
 );
