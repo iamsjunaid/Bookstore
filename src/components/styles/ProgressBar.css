@@ -1,0 +1,9 @@
+.progress-bar {
+  border: 5px solid #4386bf;
+  border-left-color: #f3f3f3;
+  border-radius: 50%;
+  height: 4.25rem;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  width: 4.25rem;
+}

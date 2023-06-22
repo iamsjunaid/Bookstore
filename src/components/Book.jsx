@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import './styles/Book.css';
 import { getBooks, deleteBook } from '../redux/books/booksSlice';
+import ProgressBar from './ProgressBar';
 
 const Book = () => {
   const [setError] = useState(null);
@@ -37,35 +38,48 @@ const Book = () => {
   }
 
   return (
-    <div>
+    <div className="books-container">
       {/* Render the book data */}
       {booksArray.map((book) => (
         <div className="book" key={book.id}>
-          <article>
+          <article className="container-1">
             <div className="book-details">
-              <p>{book.category}</p>
-              <p>{book.title}</p>
-              <p>{book.author}</p>
+              <p className="category">{book.category}</p>
+              <p className="title">{book.title}</p>
+              <p className="author">{book.author}</p>
             </div>
             <div className="interactions">
-              <button type="submit">Comments</button>
-              <button type="submit" onClick={() => handleDeleteBook(book.id)}>Remove</button>
-              <button type="submit">Edit</button>
+              <button type="submit" className="btn">Comments</button>
+              <span className="line" />
+              <button type="submit" className="btn" onClick={() => handleDeleteBook(book.id)}>Remove</button>
+              <span className="line" />
+              <button type="submit" className="btn">Edit</button>
             </div>
           </article>
-          <article>
-            <div>circle</div>
+          <article className="container-2">
+            <div className="progress-img-container">
+              <ProgressBar />
+            </div>
             <div className="progress-text">
-              <p>Book.progress</p>
-              <p>Completed</p>
+              <p className="percentage">
+                {Math.floor(Math.random() * 101)}
+                %
+              </p>
+              <p className="complete">Completed</p>
             </div>
           </article>
           <article>
+            <div className="vertical-bar" />
+          </article>
+          <article className="container-4">
             <div>
-              <p>CURRENT CHAPTER</p>
-              <p>Book.chapter</p>
+              <p className="current-chapter">CURRENT CHAPTER</p>
+              <p className="chapter">
+                Chapter&nbsp;
+                {Math.floor(Math.random() * 10)}
+              </p>
             </div>
-            <button type="submit">UPDATE PROGRESS</button>
+            <button type="submit" className="btn-submit"><span>UPDATE PROGRESS</span></button>
           </article>
         </div>
       ))}
