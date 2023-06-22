@@ -74,7 +74,10 @@ const Book = () => {
           <article className="container-4">
             <div>
               <p className="current-chapter">CURRENT CHAPTER</p>
-              <p className="chapter">{Math.floor(Math.random() * 10)}</p>
+              <p className="chapter">
+                Chapter&nbsp;
+                {Math.floor(Math.random() * 10)}
+              </p>
             </div>
             <button type="submit" className="btn-submit"><span>UPDATE PROGRESS</span></button>
           </article>
