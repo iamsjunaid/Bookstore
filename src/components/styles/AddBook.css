@@ -6,9 +6,7 @@
 }
 
 .title-add-book {
-  width: 10.875rem;
-  height: 1.5rem;
-  font-family: var(--font-pri) !important;
+  font-family: var(--font-pri);
   font-size: 1.25rem;
   font-weight: bold;
   font-stretch: normal;
@@ -38,4 +36,8 @@ form {
 
 #category:hover {
   cursor: pointer;
+}
+
+.title-container {
+  text-align: left;
 }
