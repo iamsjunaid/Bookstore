@@ -111,7 +111,7 @@
 .vertical-bar {
   width: 0.125rem;
   height: 4.375rem;
-  border: solid 1px #e8e8e8;
+  border-right: solid 1px #e8e8e8;
   margin-left: 4em;
 }
 
