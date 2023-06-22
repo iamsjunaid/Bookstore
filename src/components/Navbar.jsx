@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import './styles/Navbar.css';
-import { FaUser } from 'react-icons/fa'; // eslint-disable-line import/no-extraneous-dependencies
+import { FaUser } from 'react-icons/fa6';
 
 const Navbar = () => (
   <nav className="navbar">
