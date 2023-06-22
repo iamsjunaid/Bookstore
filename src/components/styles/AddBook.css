@@ -1,7 +1,13 @@
+.add-book-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 64em;
+}
+
 .title-add-book {
   width: 10.875rem;
   height: 1.5rem;
-  margin-left: 5em;
   font-family: var(--font-pri) !important;
   font-size: 1.25rem;
   font-weight: bold;
@@ -16,7 +22,6 @@ form {
   display: grid;
   justify-content: space-between;
   gap: 1em;
-  width: 65em;
   margin: 0 auto;
   grid-template-columns: 2fr 2fr 1fr 1fr;
   grid-template-rows: 1fr;
