@@ -8,10 +8,10 @@ const Navbar = () => (
       <div className="col-1">
         <li className="title-link">Bookstore CMS</li>
         <li>
-          <Link to="/" className="subtitle-link">Books</Link>
+          <Link to="/" className="subtitle-link">BOOKS</Link>
         </li>
         <li>
-          <Link to="/categories" className="subtitle-link">Categories</Link>
+          <Link to="/categories" className="subtitle-link" id="categories">CATEGORIES</Link>
         </li>
       </div>
       <div className="oval">
