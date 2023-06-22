@@ -1,11 +1,6 @@
-.books {
-  padding: 3em;
-}
-
 .books-container {
   padding: 1em;
   display: flex;
   flex-direction: column;
   gap: 1em;
-  border-bottom: 1px solid #e8e8e8;
 }
